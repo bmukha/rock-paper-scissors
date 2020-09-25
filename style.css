@@ -1,0 +1,56 @@
+* {
+  font-size: 20px;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+body {
+  width: 95vw;
+  height: 95vh;
+  background-color: rgba(128, 128, 128, 0.3);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "header header header"
+    "player between computer"
+    "footer footer footer";
+}
+
+header {
+  margin: 0;
+  background-color: rgb(118, 194, 230);
+  grid-area: header;
+}
+
+.player {
+  margin: 0;
+  background-color: rgb(236, 168, 168);
+  grid-area: player;
+}
+
+.colon {
+  margin: 0;
+  grid-area: between;
+}
+
+.computer {
+  margin: 0;
+  background-color: rgb(137, 236, 91);
+  grid-area: computer;
+}
+
+footer {
+  margin: 0;
+  display: flex;
+  grid-area: footer;
+  background-color: rgb(66, 226, 138);
+}
+
+p {
+  margin: 0;
+  padding: 10px;
+}

@@ -50,3 +50,4 @@ function game() {
   }
   console.log(`${resultOfTheGame} Final score: ${userScore}:${computerScore}`);
 }
+
