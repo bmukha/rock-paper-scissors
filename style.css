@@ -83,3 +83,7 @@ p {
   margin: auto;
   padding: 10px;
 }
+
+.options:hover {
+  cursor: pointer;
+}
