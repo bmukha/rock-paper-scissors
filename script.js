@@ -1,16 +1,19 @@
+let computerScore = 0;
+let playerScore = 0;
+const resultsDisplay = document.querySelector("#display-results");
+resultsDisplay.innerText = `${playerScore}:${computerScore}`;
+const resultsString = document.querySelector("#resultsString");
 function computerPlay() {
   const arr = ["Rock", "Paper", "Scissors"];
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
 function playRound(playerSelection, computerSelection) {
+  let outcome = "";
+  let color = 'magenta';
   if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
-    return "It's a draw! Try again!";
-  }
-
-  let result = "Lose";
-
-  if (
+    outcome = "draw";
+  } else if (
     (playerSelection.toLowerCase() === "rock" &&
       computerSelection.toLowerCase() === "scissors") ||
     (playerSelection.toLowerCase() === "paper" &&
@@ -18,15 +21,20 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection.toLowerCase() === "scissors" &&
       computerSelection.toLowerCase() === "paper")
   ) {
-    result = "Won";
-    let pscore = document.querySelector('.player-score');
-    pscore.innerText++;
-    return `You ${result} the round! ${playerSelection} beats ${computerSelection}`;
+    playerScore++;
+    outcome = "won";
+    color = 'green';
   } else {
-    let cscore = document.querySelector('.computer-score');
-    cscore.innerText++;
-    return `You ${result} the round! ${computerSelection} beats ${playerSelection}`;
+    computerScore++;
+    outcome = "lost";
+    color = 'red';
   }
+  resultsString.innerHTML = `<p>You chose:</p>
+    <img src="./img/${playerSelection.toLowerCase()}.jpg" alt=${playerSelection.toLowerCase()} width="150px" height="150px" />
+    <p>Computer chose:</p>
+    <img src="./img/${computerSelection.toLowerCase()}.jpg" alt=${computerSelection.toLowerCase()} width="150px" height="150px" />
+    <p style="background-color:${color};">You ${outcome} the round!</p>`;
+  resultsDisplay.innerText = `${playerScore}:${computerScore}`;
 }
 
 // function game() {
@@ -64,8 +72,12 @@ console.log(options);
 //   })
 // );
 
-const resultsDisplay = document.querySelector("#display-results");
-
-options[0].addEventListener('click', (e) => resultsDisplay.innerText = (playRound(options[0].attributes[0].value, computerPlay())));
-options[1].addEventListener('click', (e) => resultsDisplay.innerText = (playRound(options[1].attributes[0].value, computerPlay())));
-options[2].addEventListener('click', (e) => resultsDisplay.innerText = (playRound(options[2].attributes[0].value, computerPlay())));
+options[0].addEventListener("click", (e) =>
+  playRound(options[0].attributes[0].value, computerPlay())
+);
+options[1].addEventListener("click", (e) =>
+  playRound(options[1].attributes[0].value, computerPlay())
+);
+options[2].addEventListener("click", (e) =>
+  playRound(options[2].attributes[0].value, computerPlay())
+);
